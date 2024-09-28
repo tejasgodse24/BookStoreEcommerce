@@ -11,7 +11,14 @@ echo "New changes copied to server !"
 
 # copying  media files to media folder
 echo "Copying css files...."
-cp -r /home/ubuntu/BookStoreEcommerce/public/media/* /var/www/bookstore/media
+# cp -r /home/ubuntu/BookStoreEcommerce/public/media/* /var/www/bookstore/media
+
+if [ -d "/home/ubuntu/BookStoreEcommerce/public/media" ] && [ "$(ls -A /home/ubuntu/BookStoreEcommerce/public/media)" ]; then
+    echo "Copying media files..."
+    cp -r /home/ubuntu/BookStoreEcommerce/public/media/* /var/www/bookstore/media
+else
+    echo "Media directory is empty or does not exist, skipping file copy."
+fi
 
 
 # Activate Virtual Env
