@@ -49,11 +49,8 @@ echo "reloading redis server"
 sudo systemctl restart redis-server
 
 
-echo "reloading celery and celery beat"
-# sudo supervisorctl restart all
-sudo systemctl restart celery.service
-sudo systemctl restart celerybeat.service
-
+echo "supervisorc for celery and celery beat"
+sudo supervisorctl restart all
 
 
 echo "Reloading App..."
