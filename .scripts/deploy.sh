@@ -51,8 +51,8 @@ sudo systemctl restart redis-server
 
 echo "reloading celery and celery beat"
 # sudo supervisorctl restart all
-sudo systemctl status celery.service
-sudo systemctl status celerybeat.service
+sudo systemctl restart celery.service
+sudo systemctl restart celerybeat.service
 
 
 
