@@ -18,6 +18,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.contrib.auth.forms import PasswordChangeForm
 import uuid
+import re
 # Create your views here.
 
 
@@ -99,14 +100,32 @@ def login_page(request):
 
     if request.method == 'POST':
         email = request.POST.get('email')
-        password = request.POST.get('password')
-        
+        # password = request.POST.get('password')
+        password = "123"
+
         user_obj = User.objects.filter(username = email)
-        if len(user_obj) == 0 :
-            messages.warning(request, "Email is not registered")
-            return HttpResponseRedirect(request.path_info)
+        user_obj = None if not user_obj else user_obj[0]
+        print(user_obj)
+        # if len(user_obj) == 0 :
+        if not user_obj :
+            # messages.warning(request, "Email is not registered")
+
+            #temp change to register directly
+            user_obj = User.objects.create(first_name = "", last_name = "", email= email, username = email)
+            user_obj.set_password(password)
+            user_obj.save()
+
+            email_token = str(uuid.uuid4())
+            profile_obj = Profile.objects.create(user = user_obj, email_token = email_token, mobile_number = "")
+            
+            profile_obj.is_email_verified = True
+            login_type = MembershipType.objects.get(name = 'normal')
+            profile_obj.login_type = login_type
+            profile_obj.save()
+
+            # return HttpResponseRedirect(request.path_info)
         
-        if user_obj[0].profile.is_email_verified == False:
+        if user_obj.profile.is_email_verified == False:
             messages.warning(request, "Email is not verified")
             return HttpResponseRedirect(request.path_info)
         
@@ -126,7 +145,7 @@ def login_page(request):
 
 
 
-import re
+
 def register_page(request):
 
     if request.method == 'POST':
@@ -208,7 +227,9 @@ def cart(request):
             }
         return render(request, 'accounts/cart.html', context)
     else:
-        return render(request, 'accounts/not_login.html', {'type': "Cart"})
+        # return render(request, 'accounts/not_login.html', {'type': "Cart"})
+        return redirect('/accounts/login/')
+
 
 
 def wishlist(request):
@@ -217,7 +238,8 @@ def wishlist(request):
         context = {'wishlist' : wishlist.wishlist_items.all()}
         return render(request, 'accounts/wishlist.html', context)
     else:
-        return render(request, 'accounts/not_login.html', {'type': "Wishlist"})
+        # return render(request, 'accounts/not_login.html', {'type': "Wishlist"})
+        return redirect('/accounts/login/')
 
 
 
@@ -431,9 +453,13 @@ def user_profile_page(request) :
         if request.method == "POST":
             fname = request.POST.get('fname')
             lname = request.POST.get('lname')
+            mobile_number = request.POST.get('mobile_number')
             user_obj = request.user
             user_obj.first_name = fname
             user_obj.last_name = lname
+            profile_obj = Profile.objects.get(user = user_obj)
+            profile_obj.mobile_number = mobile_number
+            profile_obj.save()
             user_obj.save()
 
         return render(request, 'accounts/profile.html')

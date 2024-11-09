@@ -50,8 +50,8 @@ def contact(request):
         message = request.POST.get('message')
 
         if subject and message and email:
-            # send_contact_email.delay(name=name, email=email, phone=phone, subject=subject, message=message)
-            send_contact_email(name=name, email=email, phone=phone, subject=subject, message=message)
+            send_contact_email.delay(name=name, email=email, phone=phone, subject=subject, message=message)
+            # send_contact_email(name=name, email=email, phone=phone, subject=subject, message=message)
             
             messages.success(request, "Message Sent Succesfully")
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

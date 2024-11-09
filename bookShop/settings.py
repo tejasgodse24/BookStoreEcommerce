@@ -149,3 +149,23 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
 RAZORPAY_KEY = os.environ.get("RAZORPAY_KEY")
 RAZORPAY_SECRET = os.environ.get("RAZORPAY_SECRET")
+
+
+
+# Celery settings
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_TIMEZONE = "Asia/Kolkata"
+CELERY_RESULT_EXTENDED = True
+CELERY_RESULT_BACKEND = 'django-db'
+
+
+# Celery Configuration Options
+# CELERY_BROKER_URL = f"redis://127.0.0.1:6379"
+# BROKER_URL = f"redis://127.0.0.1:6379"
+# CELERY_TIMEZONE = "Asia/Kolkata"
+# CELERY_TASK_TRACK_STARTED = True
+# CELERY_TASK_TIME_LIMIT = 30 * 60
+# CELERY_RESULT_EXTENDED = True
+# CELERY_worker_state_db = True
+# CELERY_result_persistent=True
+# CELERY_RESULT_BACKEND = 'django-db'

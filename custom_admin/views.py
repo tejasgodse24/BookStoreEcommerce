@@ -55,7 +55,9 @@ def login_page(request):
 @user_in_group
 def logout_page(request):
     logout(request)
-    return redirect('/custom-admin-management/dashboard')
+    # return redirect('/custom-admin-management/dashboard')
+    return redirect('/')
+
 
 
 @user_in_group

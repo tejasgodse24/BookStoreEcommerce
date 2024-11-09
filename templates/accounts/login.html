@@ -7,7 +7,9 @@
 <section id="contact-section" class="mb-5">
   <div class="container-fluid">
     <div class="container contact-container">
-      <h1 class=" mb-2">Log In</h1>
+      <!-- <h1 class=" mb-2">Log In</h1> -->
+      <h5 class=" mb-4">Just Enter Your Email for Reference</h5>
+
 
       <form method="post">
         {% include "base/alert.html" %}
@@ -16,27 +18,29 @@
         <div class="row row-cols-1 g-4">
           <div class="col">
             <div class="md-form">
-              <input placeholder="Email" required type="email" id="email" name="email" class="form-control" />
+              <input placeholder="Just Enter Your Email" required type="email" id="email" name="email" class="form-control" />
             </div>
           </div>
 
-          <div class="col">
+          <!-- <div class="col">
             <div class="md-form">
-              <input placeholder="Password" required type="password" id="password" name="password"
+              <input  placeholder="Password" required type="password" id="password" name="password"
                 class="form-control" />
             </div>
-          </div>
+          </div> -->
 
           <div class="col">
             <div class="md-form">
-              <button class="btn">Log In</button>
-              <div>
+              <!-- <button class="btn">Log In</button> -->
+              <button class="btn">Proceed Further</button>
+
+              <!-- <div>
                 <span>Not Registered yet ? </span><a class="register-now" href="/accounts/register"><b>Register
                     Now</b></a>
               </div>
               <div>
                 <a class="forgot-password" href="/accounts/forgot-password"><b>Forgot Password ?</b></a>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

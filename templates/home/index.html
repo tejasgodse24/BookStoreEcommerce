@@ -209,9 +209,14 @@
             <div class="container">
               <div class="carousel-caption">
                 <h1 class="heading">So many books, so little time.</h1>
-                <p><a class="btn btn-lg" href="/accounts/register/"><b>Register</b></a>
+                <!-- <p><a class="btn btn-lg" href="/accounts/register/"><b>Register</b></a>
                   <a class="btn btn-lg" href="/accounts/login/"><b>log In</b></a>
+                </p> -->
+                {% if not request.user.is_authenticated %}
+                <p>
+                  <a class="btn btn-lg" href="/accounts/login/"><b>Get Started</b></a>
                 </p>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -220,9 +225,14 @@
             <div class="container">
               <div class="carousel-caption">
                 <h1 class="heading">Explore New Books of Various Categories</h1>
-                <p><a class="btn btn-lg " href="/accounts/register/"><b>Register</b></a>
+                <!-- <p><a class="btn btn-lg " href="/accounts/register/"><b>Register</b></a>
                   <a class="btn btn-lg " href="/accounts/login/"><b>log In</b></a>
+                </p> -->
+                {% if not request.user.is_authenticated %}
+                <p>
+                  <a class="btn btn-lg" href="/accounts/login/"><b>Get Started</b></a>
                 </p>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -231,9 +241,14 @@
             <div class="container">
               <div class="carousel-caption">
                 <h1 class="heading">One more for good measure.</h1>
-                <p><a class="btn btn-lg" href="/accounts/register/"><b>Register</b></a>
+                <!-- <p><a class="btn btn-lg" href="/accounts/register/"><b>Register</b></a>
                   <a class="btn btn-lg " href="/accounts/login/"><b>log In</b></a>
+                </p> -->
+                {% if not request.user.is_authenticated %}
+                <p>
+                  <a class="btn btn-lg" href="/accounts/login/"><b>Get Started</b></a>
                 </p>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -326,8 +341,8 @@
                     </svg>
                   </a>
                   {% else %}
-                  <a href="/accounts/not-login-error/" class="gray-icon" id="gray-{{book.uid}}">
-
+                  <!-- <a href="/accounts/not-login-error/" class="gray-icon" id="gray-{{book.uid}}"> -->
+                    <a href="/accounts/login/" class="gray-icon" id="gray-{{book.uid}}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c2c2c2"
                       class="heart-gray bi bi-heart-fill" viewBox="0 0 16 16">
                       <path fill-rule="evenodd"
@@ -420,9 +435,9 @@
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
             <h6 class="text-uppercase fw-bold">Admin Facilities</h6>
             <hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
-            <p>
+            <!-- <p>
               <a href="/custom-admin-management/login" class="text-white">Login to Custom Admin Panel</a>
-            </p>
+            </p> -->
             <p>
               <a href="/custom-admin-management/dashboard" class="text-white">Custom Admin Dashboard</a>
             </p>
@@ -455,7 +470,7 @@
             <h6 class="text-uppercase fw-bold">Contact</h6>
             <hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
             <p><i class="fas fa-home mr-3"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, ipsa.</p>
-            <p><i class="fas fa-envelope mr-3"></i> mrunalbooks.com</p>
+            <p><i class="fas fa-envelope mr-3"></i> onlinebookstore.tech</p>
             <p><i class="fas fa-phone mr-3"></i> + 91 1111111111</p>
           </div>
         </div>
@@ -464,7 +479,7 @@
 
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
 
-      <a class="text-white" href="/">mrunalbooks.com</a>
+      <a class="text-white" href="/">onlinebookstore.tech</a>
     </div>
   </footer>
 

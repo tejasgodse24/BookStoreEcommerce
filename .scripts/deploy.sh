@@ -45,12 +45,16 @@ deactivate
 echo "Virtual env 'venv' Deactivated !"
 
 
+echo "reloading redis server"
+sudo systemctl restart redis-server
 
-# echo "reloading celery and celery beat"
+
+echo "reloading celery and celery beat"
 # sudo supervisorctl restart all
+sudo systemctl status celery.service
+sudo systemctl status celerybeat.service
 
-# echo "reloading redis server"
-# sudo systemctl restart redis-server
+
 
 echo "Reloading App..."
 #kill -HUP `ps -C gunicorn fch -o pid | head -n 1`

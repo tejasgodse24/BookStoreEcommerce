@@ -4,10 +4,10 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
-# from celery import shared_task
-# from time import sleep
+from celery import shared_task
+from time import sleep
 
-# @shared_task
+@shared_task
 def send_account_activation_email(email , email_token):
     subject = 'Your account needs to be verified'
     email_from = settings.EMAIL_HOST_USER   
@@ -16,7 +16,7 @@ def send_account_activation_email(email , email_token):
     send_mail(subject , message , email_from , [email])
 
 
-# @shared_task
+@shared_task
 def send_order_placed_thankyou_email(email):
     subject = "Thank You for placing Order"
     html_message = render_to_string('email/order_placed_thankyou.html')
@@ -32,7 +32,7 @@ def send_order_placed_thankyou_email(email):
     message.send()
 
 
-# @shared_task
+@shared_task
 def send_order_dispatched_email(email):
     subject = "Your Order is Dispatched"
     html_message = render_to_string('email/order_dispatched.html')
@@ -48,7 +48,7 @@ def send_order_dispatched_email(email):
     message.send()
     
     
-# @shared_task
+@shared_task
 def send_order_shipped_email(email):
     subject = "Your Order is Shipped"
     html_message = render_to_string('email/order_shipped.html')
@@ -63,7 +63,7 @@ def send_order_shipped_email(email):
     message.attach_alternative(html_message, 'text/html')
     message.send()
 
-# @shared_task
+@shared_task
 def send_forget_password_email(email, token):
     subject = 'Your forgot password link'
     # message = f'Hi , click on the link to reset your password http://127.0.0.1:8000/accounts/reset-password/{token}'
@@ -74,7 +74,7 @@ def send_forget_password_email(email, token):
     return True
 
 
-# @shared_task
+@shared_task
 def send_contact_email(name, email, phone, subject, message):
     heading = 'Contact Email from '  + name + " : " + subject 
     email_from = settings.EMAIL_HOST_USER
